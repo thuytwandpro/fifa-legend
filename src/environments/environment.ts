@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiKey: "AIzaSyCEF5w-rqfoLi2XDHpcLJyj558oTq1FsA0",
+    authDomain: "fifa-electronjs.firebaseapp.com",
+    databaseURL: "https://fifa-electronjs.firebaseio.com",
+    projectId: "fifa-electronjs",
+    storageBucket: "fifa-electronjs.appspot.com",
+    messagingSenderId: "543915980136"
 };
 
 /*
