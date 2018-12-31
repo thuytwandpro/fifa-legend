@@ -1,8 +1,11 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {AuthService} from '../services/auth.service';
 import { Router } from "@angular/router";
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoadAssetsService } from '../services/load-assets.service';
+import * as $ from 'jquery'
+// declare var $ :any;
 
 @Component({
   selector: 'app-login',
@@ -11,10 +14,41 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(public afAuth: AngularFireAuth, private fb: FormBuilder, private authService :AuthService, private router: Router, private zone: NgZone){}
+  loadData:boolean = true;
+  loadIntro:boolean = false;
+  loadLogin:boolean = false;
+  checkAccount:boolean = false;
+  constructor(
+    public afAuth: AngularFireAuth,
+     private fb: FormBuilder, 
+     private authService :AuthService,
+     private loadAssets: LoadAssetsService,
+      private router: Router
+      ){
+    this.loading()
+  }
 
   ngOnInit() {
     this.buildForm()
+  }
+
+  loading(){
+    if(localStorage.getItem("logOut") == "fromDashboard"){
+      setTimeout(() => {
+        this.loadData = false
+     this.loadLogin = true  
+       }, 3000);
+     localStorage.removeItem("logOut")    
+    }else{
+    setTimeout(() => {
+     this.loadData = false
+     this.loadIntro = true
+    }, 3000);
+    setTimeout(() => {
+      this.loadIntro = false
+      this.loadLogin = true
+    }, 8500)
+  }
   }
 
   buildForm(): void {
@@ -72,19 +106,17 @@ export class LoginComponent implements OnInit {
   };
 
   signin(){
-    this.authService.loginWithEmail(this.loginForm.value['email'], this.loginForm.value['password'])
+    this.checkAccount = true
+    setTimeout(() => {
+      this.authService.loginWithEmail(this.loginForm.value['email'], this.loginForm.value['password'])
     .then((res) => { 
       this.router.navigate(['dashboard'])
       })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      this.checkAccount = false
+      alert('User or password is incorrect')
+    }
+      );
+    }, 2000)
   }
-
-  signInWithGoogle() {
-    this.authService.signInWithGoogle()
-    .then((res) => { 
-      this.router.navigate(['dashboard'])
-      })
-    .catch((err) => console.log(err));
-  }
-  
 }

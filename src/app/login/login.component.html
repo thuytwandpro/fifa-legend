@@ -1,4 +1,21 @@
-<div class="limiter">
+<div id="" *ngIf="loadData">
+  <div class="wrap">
+    <div class="loader"></div>
+    <div class="loaderbefore"></div>
+    <div class="circular"></div>
+    <div class="circular another"></div>
+  <div class="text">Loading</div>
+  </div>
+  
+</div>
+
+<div id="" *ngIf="loadIntro">
+  <video width="100%" height="100%" autoplay>
+    <source src="../../assets/videos/fifa-intro.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="limiter" *ngIf="loadLogin">
   <div class="container-login100" >
     <div class="wrap-login100" style="background-image: url('../../assets/images/login-bg.jpg'); background-size: cover;">
 
@@ -11,60 +28,32 @@
         </span>
         
         
-        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+        <div class="wrap-input100 validate-input  m-t-20" data-validate = "Valid email is required: ex@abc.xyz">
           <input class="input100" type="text" name="email" formControlName="email">
           <span class="focus-input100"></span>
           <span class="label-input100">Email</span>
         </div>
-        <div *ngIf="formErrors.email">
+        <div *ngIf="formErrors.email" style="color: rgb(255, 56, 56); font-size: 15px; font-weight: 700">
           {{ formErrors.email }}
         </div>
         
-        <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <div class="wrap-input100 validate-input  m-t-20" data-validate="Password is required">
           <input class="input100" type="password" name="pass" formControlName="password">
           <span class="focus-input100"></span>
           <span class="label-input100">Password</span>
         </div>
-        <div *ngIf="formErrors.password">
+        <div *ngIf="formErrors.password" style="color: rgb(255, 56, 56); font-size: 15px; font-weight: 700">
           {{ formErrors.password }}
-        </div>      
+        </div>    
 
-        <!-- <div class="flex-sb-m w-full p-t-3 p-b-32">
-          <div class="contact100-form-checkbox">
-            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-            <label class="label-checkbox100" for="ckb1">
-              Remember me
-            </label>
-          </div>
-
-          <div>
-            <a href="#" class="txt1">
-              Forgot Password?
-            </a>
-          </div>
-        </div> -->
-    
-
-        <div class="container-login100-form-btn">
+        <div class="container-login100-form-btn m-t-40" *ngIf="!checkAccount">
           <button class="login100-form-btn" [disabled]="!loginForm.valid">
             Login
           </button>
         </div>
-        
-        <div class="text-center p-t-46 p-b-20">
-          <span class="txt2">
-            or sign in using
-          </span>
-        </div>
 
-        <div class="login100-form-social flex-c-m">
-          <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-            <i class="fa fa-facebook-f" aria-hidden="true"></i>
-          </a>
-
-          <a href="Javascript:;" class="login100-form-social-item flex-c-m bg3 m-r-5" (click)="signInWithGoogle()">
-            <i class="fa fa-google-plus" aria-hidden="true"></i>
-          </a>
+        <div *ngIf="checkAccount" class="text-center m-t-40">
+          <i class="fa fa-spinner fa-spin" style="font-size:32px; color: #fff"></i>
         </div>
       </form>
     </div>

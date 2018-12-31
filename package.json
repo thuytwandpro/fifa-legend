@@ -4,13 +4,45 @@
   "main": "main.js",
   "electron-tsc": "tsc main.ts && ng build --base-href ./ && electron .",
   "scripts": {
-    "electron": "ng build --base-href ./ && electron .",
+    "electron": "electron .",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dist": "build"
+  },
+  "build": {
+    "productName": "FifaLegend",
+    "appId": "org.simulatedgreg.electron-vue",
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "directories": {
+      "output": "build"
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico"
+    },
+    "linux": {
+      "icon": "build/icons"
+    }
   },
   "private": true,
   "dependencies": {
@@ -20,6 +52,7 @@
     "@angular/core": "~7.1.0",
     "@angular/fire": "^5.1.1",
     "@angular/forms": "~7.1.0",
+    "@angular/http": "^7.1.4",
     "@angular/platform-browser": "~7.1.0",
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
@@ -40,8 +73,10 @@
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "electron": "^4.0.0",
+    "electron-builder": "^20.38.4",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
+    "jquery": "^3.3.1",
     "karma": "~3.1.1",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",

@@ -5,16 +5,17 @@ import * as firebase from 'firebase/app';
 import {Observable} from "rxjs";
 
 @Injectable()
-export class AuthService {
+export class AuthService  {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
 constructor(private _firebaseAuth: AngularFireAuth, private router: Router) { 
+  this._firebaseAuth.auth.signOut()
       this.user = _firebaseAuth.authState;
-this.user.subscribe(
+      this.user.subscribe(
         (user) => {
           if (user) {
             this.userDetails = user;
-            console.log(this.userDetails);
+            localStorage.setItem("currentUser", user.email);
           }
           else {
             this.userDetails = null;
