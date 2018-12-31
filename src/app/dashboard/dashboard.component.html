@@ -1,197 +1,118 @@
 <div style="background: url('../../assets/images/select-manager-bg.jpg'); background-size: cover; height: 100vh;">
-<div class="dashboard-header">
-  <nav class="navbar navbar-expand-lg">
+  <div class="dashboard-header">
+    <nav class="navbar navbar-expand-lg">
       <p class="navbar-brand">Chọn HLV</p>
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto navbar-right-top">
-              <li class="nav-item dropdown nav-user">
-                  <a class="nav-link nav-user-img" href="Javascript:;" (click)="logOut()" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="../../assets/images/logout.png" alt="" class="user-avatar-md"></a>
-              </li>
-          </ul>
+        <ul class="navbar-nav ml-auto navbar-right-top">
+          <li class="nav-item dropdown nav-user">
+            <a class="nav-link nav-user-img" href="Javascript:;" (click)="logOut()" id="navbarDropdownMenuLink2"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="../../assets/images/logout.png" alt="" class="user-avatar-md"></a>
+          </li>
+        </ul>
       </div>
-  </nav>
+    </nav>
+  </div>
+
+  <div class="container" id="select-manager">
+    <div class="row">
+
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12" *ngFor="let manager of listManager">
+        <img src="../../assets/images/player.jpg" alt="">
+        <div class="card">
+          <h5 class="card-header px-2 text-center">Basic
+            <span class="pull-right" style="cursor: pointer" (click)="removeManager(manager.key)"><i class="fa fa-times"></i></span>
+          </h5>
+          <div class="card-body" *ngIf="manager.name.length > 0">
+            <div class="row">
+              <div class="col-3">
+                <img src="" alt="">
+              </div>
+              <div class="col-4">
+                <p><strong>Level:</strong></p>
+                <p><strong>Rank:</strong></p>
+              </div>
+              <div class="col-5">
+                <p><strong>Level:</strong></p>
+                <p><strong>Rank:</strong></p>
+              </div>
+            </div>
+            <button class="btn btn-block btn-sm btn-outline-primary" [routerLink]="[ '/main-manager', manager.key]">{{manager.name}}</button>
+            <div class="row">
+              <div class="col-4">
+                <img src="" alt="">
+              </div>
+              <div class="col-4">
+                <p>Team</p>
+                <div>
+                  <small>Level: <strong>25</strong></small>
+                  <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div>
+                  <small>Level: <strong>25</strong></small>
+                  <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <p>Index</p>
+                <div>
+                  <small>Level: <strong>25</strong></small>
+                  <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div>
+                  <small>Level: <strong>25</strong></small>
+                  <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body" *ngIf="!(manager.name.length > 0)">
+            <div class="row empty">
+            </div>
+            <button class="btn btn-block btn-sm btn-success" data-toggle="modal" data-target="#addManager" (click)="setUser(manager.key)">Create
+              New</button>
+            <div class="row empty">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="container" id="select-manager">
-<div class="row">
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-      <img src="../../assets/images/player.jpg" alt="">
-        <div class="card">
-            <h5 class="card-header px-2">Basic
-              <span class="pull-right" style="cursor: pointer"><i class="fa fa-times"></i></span>
-            </h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-3">
-                  <img src="" alt="">
-                </div>
-                <div class="col-4">
-                    <p><strong>Level:</strong></p>
-                    <p><strong>Rank:</strong></p>
-                </div>
-                <div class="col-5">
-                    <p><strong>Level:</strong></p>
-                    <p><strong>Rank:</strong></p>
-                </div>  
-              </div>
-              <button class="btn btn-block btn-sm btn-outline-primary">HLV Name</button>
-              <div class="row">
-                <div class="col-4">
-                  <img src="" alt="">
-                </div>
-                <div class="col-4">
-                  <p>Team</p>
-                  <div>
-                  <small>Level: <strong>25</strong></small>
-                      <div class="progress" style="height: 10px;">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div>
-                <small>Level: <strong>25</strong></small>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-                </div>
-                <div class="col-4">
-                  <p>Index</p>
-                  <div>
-                  <small>Level: <strong>25</strong></small>
-                      <div class="progress" style="height: 10px;">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div>
-                <small>Level: <strong>25</strong></small>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-                </div>  
-              </div>
-            </div>
+
+<!-- Modal -->
+<div class="modal fade" id="addManager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="inputText3" class="col-form-label">Your Name</label>
+          <input id="inputText3" type="text" class="form-control" [(ngModel)]="newManager" (input)="inputCode($event.target.value)">
         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-sm" [disabled]="!managerValid" (click)="add()">Add</button>
+      </div>
     </div>
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-      <img src="../../assets/images/player.jpg" alt="">
-        <div class="card">
-            <h5 class="card-header px-2">Basic
-              <span class="pull-right" style="cursor: pointer"><i class="fa fa-times"></i></span>
-            </h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-3">
-                  <img src="" alt="">
-                </div>
-                <div class="col-4">
-                    <p><strong>Level:</strong></p>
-                    <p><strong>Rank:</strong></p>
-                </div>
-                <div class="col-5">
-                    <p><strong>Level:</strong></p>
-                    <p><strong>Rank:</strong></p>
-                </div>  
-              </div>
-              <button class="btn btn-block btn-sm btn-outline-primary">HLV Name</button>
-              <div class="row">
-                <div class="col-4">
-                  <img src="" alt="">
-                </div>
-                <div class="col-4">
-                  <p>Team</p>
-                  <div>
-                  <small>Level: <strong>25</strong></small>
-                      <div class="progress" style="height: 10px;">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div>
-                <small>Level: <strong>25</strong></small>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-                </div>
-                <div class="col-4">
-                  <p>Index</p>
-                  <div>
-                  <small>Level: <strong>25</strong></small>
-                      <div class="progress" style="height: 10px;">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div>
-                <small>Level: <strong>25</strong></small>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-                </div>  
-              </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-      <img src="../../assets/images/player.jpg" alt="">
-        <div class="card">
-            <h5 class="card-header px-2">Basic
-              <span class="pull-right" style="cursor: pointer"><i class="fa fa-times"></i></span>
-            </h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-3">
-                  <img src="" alt="">
-                </div>
-                <div class="col-4">
-                    <p><strong>Level:</strong></p>
-                    <p><strong>Rank:</strong></p>
-                </div>
-                <div class="col-5">
-                    <p><strong>Level:</strong></p>
-                    <p><strong>Rank:</strong></p>
-                </div>  
-              </div>
-              <button class="btn btn-block btn-sm btn-outline-primary">HLV Name</button>
-              <div class="row">
-                <div class="col-4">
-                  <img src="" alt="">
-                </div>
-                <div class="col-4">
-                  <p>Team</p>
-                  <div>
-                  <small>Level: <strong>25</strong></small>
-                      <div class="progress" style="height: 10px;">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div>
-                <small>Level: <strong>25</strong></small>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-                </div>
-                <div class="col-4">
-                  <p>Index</p>
-                  <div>
-                  <small>Level: <strong>25</strong></small>
-                      <div class="progress" style="height: 10px;">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-                <div>
-                <small>Level: <strong>25</strong></small>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-                </div>  
-              </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+  </div>
 </div>

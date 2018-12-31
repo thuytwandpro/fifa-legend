@@ -15,12 +15,14 @@ import { HttpModule } from '@angular/http';
 import { AuthService } from './services/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoadAssetsService } from './services/load-assets.service';
+import { MainManagerComponent } from './main-manager/main-manager.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    MainManagerComponent
   ],
   imports: [
     BrowserModule,
